@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class ClienteController extends Controller
 {
@@ -12,10 +15,13 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getAllClientes()
+    public function index()
     {
-        $clientes = Cliente::get()->toJson(JSON_PRETTY_PRINT);
-        return response($clientes, 200);
+        
+        $clientes = Cliente::all();
+
+        return Inertia::render('Listar', ['clientes' => $clientes]);
+
     }
 
     /**
@@ -23,38 +29,9 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createCliente(Request $request)
-    {
-        $regras = [
-            'nome' => 'required',
-            'rg' => 'required|unique:clientes',
-            'email' => 'required|email',
-            'telefone' => 'required|max:11',
-            'endereco' => 'required',
-            'imagem' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000',
-        ];
-        $retornos = [];
+    public function create(){
 
-        $request->validate($regras);
-
-        $file_name = time() . '.' . request()->imagem->getClientOriginalExtension();
-
-        request()->imagem->move(public_path('images'), $file_name);
-
-        $cliente = new Cliente();
-        $cliente->nome = $request->nome;
-        $cliente->rg = $request->rg;
-        $cliente->email = $request->email;
-        $cliente->telefone = $request->telefone;
-        $cliente->endereco = $request->endereco;
-        $cliente->imagem = $request->imagem;
-
-        $cliente->save();
-
-        return response()->json([
-            "message" => "Cliente cadastrado."
-        ], 201);
-
+        return Inertia::render('Criar');
     }
 
     /**
@@ -65,7 +42,31 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required',
+            'rg' => 'required|unique:clientes',
+            'email' => 'required|email',
+            'telefone' => 'required|max:11',
+            'endereco' => 'required',
+            'imagem' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'
+        ]);
+
+        $file_name = time() . '.' . request()->imagem->getClientOriginalExtension();
+
+        request()->imagem->move(public_path('images'), $file_name);
+
+        $cliente = new Cliente;
+        $cliente->nome = $request->nome;
+        $cliente->rg = $request->rg;
+        $cliente->email = $request->email;
+        $cliente->telefone = $request->telefone;
+        $cliente->endereco = $request->endereco;
+        $cliente->imagem = $request->imagem;
+
+        $cliente->save();
+
+
+        return Redirect::route('clientes.index');
     }
 
     /**
@@ -74,18 +75,9 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function getCliente(Cliente $cliente, $id)
+    public function show($id)
     {
-        if (Cliente::where('id', $id)->exists()) {
-
-            $cliente = Cliente::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
-            return response($cliente, 200);
-
-        }else {
-            return response([
-                "message" => "Cliente não encontrado."
-            ], 404);
-        }
+        //
     }
 
     /**
@@ -96,7 +88,10 @@ class ClienteController extends Controller
      */
     public function edit(Cliente $cliente)
     {
-        //
+        
+        return Inertia::render(
+            'Editar', ['cliente' => $cliente]
+        );
     }
 
     /**
@@ -106,7 +101,7 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function updateCliente(Request $request, $id, Cliente $cliente)
+    public function update(Request $request, $id, Cliente $cliente)
     {
         if (Cliente::where('id', $id)->exists()) {
             
@@ -135,14 +130,8 @@ class ClienteController extends Controller
 
             $cliente->save();
 
-            return response()->json([
-                "message" => "dados atualizados"
-            ], 200);
+            return Redirect::route('clientes.index');
 
-        }else {
-            return response()->json([
-                "message" => "Cliente não encontrado."
-            ], 404);
         }
     }
 
@@ -152,20 +141,9 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function deleteCliente($id)
+    public function destroy(Cliente $cliente)
     {
-        if (Cliente::where('id', $id)->exists()) {
-            $cliente = Cliente::find($id);
-            $cliente->delete();
-
-            return response()->json([
-                "message" => "Cliente deletado."
-            ], 202);
-
-        }else {
-            return response()->json([
-                "message" => "Cliente não encontrado."
-            ], 404);
-        }
+        $cliente->delete();
+        return Redirect::route('clientes.index')->with('message', 'Cliente removido com suscesso!');
     }
 }

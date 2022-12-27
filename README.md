@@ -1,3 +1,29 @@
+## Projeto de Crud com API Laravel e Vuejs
+
+<div>
+    <p>Tela de CRUD</p>
+    <img src="./public/images/print_crud.png" />
+</div>
+<div class="item">
+    <h5>O que foi feito no projeto:</h5>
+    <ol>
+        <li><strong>API</strong> Router e Controller.</li>
+        <li><strong>Tela de login</strong> própria do Laravel, utilizando a entidade User.</li>
+        <li><strong>Função de edição</strong>.</li>
+        <li><strong>Função de exclusão</strong>.</li>
+        <li><strong>Views</strong> com Vuejs e TailWindCss.</li>
+</div>
+<div class="item">
+    <h5>Próximos passos:</h5>
+    <ol>
+        <li>Consumir a API com Front-end Totalmente separado.</li>
+        <li>Otimiazar as views de Vizualização do cliente com foto.</li>
+        <li>Adaptação para ser utilizado em vários dispositivos(responsividade).</li>
+        <li>Buscando novas feautures...</li>
+    </ol>
+</div>
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
