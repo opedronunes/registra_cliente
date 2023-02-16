@@ -43,11 +43,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::group([
-    'prefix' => 'clientes',
     'middleware' => 'auth'
 ], function(){
-
-    Route::get('/', [ClienteController::class, 'index'])->name('clientes.index');
 
     Route::resource('clientes', ClienteController::class);
 
