@@ -27,11 +27,11 @@ class ClienteController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Responsew
      */
     public function create(){
 
-        return Inertia::render('Criar');
+        return Inertia::render('Clients/Create');
     }
 
     /**
@@ -65,8 +65,7 @@ class ClienteController extends Controller
 
         $cliente->save();
 
-
-        return Redirect::route('clientes.index');
+        return redirect()->route('clientes.index');
     }
 
     /**

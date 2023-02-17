@@ -9,15 +9,15 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Registro de clientes
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">Registro de clientes
             </h2>
         </template>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <div class="flex justify-end items-center py-1">
-                            <Link :href="route('listar')" class="cursor-pointer w-auto px-3 py-1 text-lg border border-slate-400 rounded hover:bg-green-700 hover:text-white transition-colors">Voltar</Link>
+                        <div class="flex items-center justify-end py-1">
+                            <Link :href="route('Listar')" class="w-auto px-3 py-1 text-lg transition-colors border rounded cursor-pointer border-slate-400 hover:bg-green-700 hover:text-white">Voltar</Link>
                         </div>
                         <div>
                             <h1>chegou no edit</h1>
@@ -32,29 +32,9 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 export default{
     data() {
-        return {
-            clientes: [],
-            nome: "",
-            rg: "",
-            email: "",
-            telefone: "",
-            endereco: "",
-            imagem: "",
-        };
     },
     methods: {
-        async getCliente() {
-            await axios
-                .get("http://127.0.0.1:8000/api/v1/clientes" + id)
-                .then((response) => {
-                    this.clientes = response.data.data;
-                    console.log(response);
-            });
-        },
-    },
-    created() {
-        this.getCliente();
-    },
+    }
 };
 
 

@@ -1,10 +1,4 @@
-<script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/inertia-vue3';
 
-import { Inertia } from '@inertiajs/inertia';
-
-</script>
 <template>
     <Head title="Listagem" />
 
@@ -58,7 +52,14 @@ import { Inertia } from '@inertiajs/inertia';
 </template>
 
 <script>
+    import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+    import { Head, Link } from '@inertiajs/inertia-vue3';
+
+    import { Inertia } from '@inertiajs/inertia';
 export default {
+    components: {
+        AuthenticatedLayout, Head, Link
+    },
     props: {
         clientes: Object,
     },

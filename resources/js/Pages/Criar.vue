@@ -9,18 +9,18 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Registro de clientes
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">Registro de clientes
             </h2>
         </template>
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
-                        <div class="flex justify-end items-center py-1">
-                            <Link :href="route('listar')" class="cursor-pointer w-auto px-3 py-1 text-lg border border-slate-400 rounded hover:bg-green-700 hover:text-white transition-colors">Voltar</Link>
+                        <div class="flex items-center justify-end py-1">
+                            <Link :href="route('listar')" class="w-auto px-3 py-1 text-lg transition-colors border rounded cursor-pointer border-slate-400 hover:bg-green-700 hover:text-white">Voltar</Link>
                         </div>
-                        <form @click="addCliente()">
-                            <div class="grid grid-cols-8 gap-4 flex flex-row items-end">
+                        <form >
+                            <div class="flex-row items-end grid-cols-8 gap-4 rid">
                                 <div class="col-span-4 lg:col-span-2">
                                     <label for="nome">Nome:</label>
                                     <input type="text" name="nome" id="nome" v-model="clientes.nome" class="form-input">
@@ -47,7 +47,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                                 </div>
 
                             </div>
-                            <button type="submit" class="cursor-pointer w-auto px-3 py-1 text-lg text-white rounded bg-green-700 hover:bg-green-500 transition-colors">Criar</button>
+                            <button type="submit" class="w-auto px-3 py-1 text-lg text-white transition-colors bg-green-700 rounded cursor-pointer hover:bg-green-500">Criar</button>
                         </form>
                     </div>
                 </div>

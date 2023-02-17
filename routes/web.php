@@ -46,6 +46,6 @@ Route::group([
     'middleware' => 'auth'
 ], function(){
 
-    Route::resource('clientes', ClienteController::class);
+    Route::resource('/clientes', ClienteController::class);
 
 });
