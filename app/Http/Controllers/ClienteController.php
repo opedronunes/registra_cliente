@@ -20,7 +20,7 @@ class ClienteController extends Controller
         
         $clientes = Cliente::all();
 
-        return Inertia::render('Listar', ['clientes' => $clientes]);
+        return Inertia::render('Clients/Index', compact('clientes'));
 
     }
 

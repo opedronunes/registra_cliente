@@ -18,6 +18,7 @@
                         <table class="w-full divide-y divide-gray-300">
                             <thead class="bg-gray-50 dark:bg-gray-800">
                                 <tr>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-white">#</th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-white">nome</th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-white">Rg</th>
                                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900  dark:text-white">email</th>
@@ -28,7 +29,8 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                <tr v-for="cliente in clientes" :key="cliente.id" class="bg-white dark:bg-gray-700">
+                                <tr v-for="cliente, i in clientes" :key="cliente.id" class="bg-white dark:bg-gray-700">
+                                    <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-white">{{ i+1 }}</td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-white">{{ cliente.nome }}</td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-white">{{ cliente.rg }}</td>
                                     <td class="px-3 py-4 text-sm text-gray-500 whitespace-nowrap dark:text-white">{{ cliente.email }}</td>

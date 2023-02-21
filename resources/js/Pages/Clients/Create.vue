@@ -15,7 +15,7 @@
                             <Link :href="route('clientes.index')" class="w-auto px-3 py-1 text-lg transition-colors border rounded cursor-pointer border-slate-400 hover:bg-green-700 hover:text-white">Voltar</Link>
                         </div>
                         <div class="flex flex-col items-center justify-center py-4">
-                            <form class="flex flex-col gap-3" @submit.prevent="form.post(route('clientes.store'))">
+                            <form class="flex flex-col gap-3" @submit.prevent="submit">
                                 <div class="flex flex-col">
                                     <label for="">Nome:</label>
                                     <input type="text" name="nome" v-model="form.nome" id="" placeholder="Digite o Nome">
@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div class="py-4">
-                                    <button type="submit" class="w-auto px-3 py-1 text-lg transition-colors border rounded cursor-pointer border-slate-400 hover:border-yellow-600 hover:bg-yellow-600 hover:text-white">Enviar</button>
+                                    <button type="submit" :disabled="form.processing" class="w-auto px-3 py-1 text-lg transition-colors border rounded cursor-pointer border-slate-400 hover:border-yellow-600 hover:bg-yellow-600 hover:text-white">Enviar</button>
                                 </div>
                             </form>
                         </div>
@@ -53,25 +53,29 @@
         
     </AuthenticatedLayout>
 </template>
-<script>
+
+<script setup>
+
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm  } from '@inertiajs/inertia-vue3';
 
-export default {
-    components: {
-        AuthenticatedLayout,Head, Link
-    },
-    setup(){
-        const form = useForm({
-            nome: '',
-            rg: '',
-            email: '',
-            telefone: '',
-            endereco: '',
-            imagem: '',
-        })
-        return { form }
-        
+    const props = defineProps ({
+        clientes: {
+            type: Object,
+            default: () => ({})
+        }
+    });
+
+    const form = useForm({
+        nome:'',
+        rg:'',
+        email: '',
+        telefone: '',
+        endereco: '',
+        imagem: '',
+    });
+    
+    const submit = () => {
+        form.post(route('clientes.store'))
     }
-}
 </script>
