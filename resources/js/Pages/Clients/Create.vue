@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div class="py-4">
-                                    <button type="submit" :disabled="form.processing" class="w-auto px-3 py-1 text-lg transition-colors border rounded cursor-pointer border-slate-400 hover:border-yellow-600 hover:bg-yellow-600 hover:text-white">Enviar</button>
+                                    <button type="submit" class="w-auto px-3 py-1 text-lg transition-colors border rounded cursor-pointer border-slate-400 hover:border-yellow-600 hover:bg-yellow-600 hover:text-white">Enviar</button>
                                 </div>
                             </form>
                         </div>
@@ -57,13 +57,14 @@
 <script setup>
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link, useForm  } from '@inertiajs/inertia-vue3';
+import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 
-    const props = defineProps ({
+    
+    const props = defineProps({
         clientes: {
             type: Object,
-            default: () => ({})
-        }
+            default: () => ({}),
+        },
     });
 
     const form = useForm({
@@ -72,10 +73,36 @@ import { Head, Link, useForm  } from '@inertiajs/inertia-vue3';
         email: '',
         telefone: '',
         endereco: '',
-        imagem: '',
+        imagem: null,
     });
-    
+
     const submit = () => {
-        form.post(route('clientes.store'))
+        form.post(route("clientes.store"));
+    };
+    
+
+    /**
+     * d
+    methods: {
+    },
+     * const props = defineProps ({
+        clientes: {
+            type: Object,
+            default: () => ({})
+        }
+    });
+
+    const form = useForm({
+        nome:null,
+        rg:null,
+        email: null,
+        telefone: null,
+        endereco: null,
+        imagem: null,
+    })
+    
+    function submit() {
+        router.post('clientes.store', form)
     }
+     */
 </script>

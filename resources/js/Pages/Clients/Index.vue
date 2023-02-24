@@ -66,9 +66,6 @@ const eliminar = (id) => {
 };
 */
 export default {
-    setup() {
-        //const form = useForm({})
-    },
 
     components: {
         AuthenticatedLayout,
@@ -88,7 +85,3 @@ export default {
 }
 
 </script>
-
-<style>
-
-</style>

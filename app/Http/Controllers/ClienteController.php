@@ -42,6 +42,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
             'nome' => 'required',
             'rg' => 'required|unique:clientes',
@@ -55,15 +56,9 @@ class ClienteController extends Controller
 
         request()->imagem->move(public_path('images'), $file_name);
 
-        $cliente = new Cliente;
-        $cliente->nome = $request->nome;
-        $cliente->rg = $request->rg;
-        $cliente->email = $request->email;
-        $cliente->telefone = $request->telefone;
-        $cliente->endereco = $request->endereco;
-        $cliente->imagem = $request->imagem;
+        $cliente = new Cliente();
 
-        $cliente->save();
+        $cliente->create($request->all());
 
         return redirect()->route('clientes.index');
     }
