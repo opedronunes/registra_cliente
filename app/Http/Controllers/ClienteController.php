@@ -56,9 +56,7 @@ class ClienteController extends Controller
 
         request()->imagem->move(public_path('images'), $file_name);
 
-        $cliente = new Cliente();
-
-        $cliente->create($request->all());
+        Cliente::create($request->all());
 
         return redirect()->route('clientes.index');
     }

@@ -1,11 +1,6 @@
 <template>
     <Head title="Criar" />
-
     <AuthenticatedLayout>
-        <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">Registro de clientes
-            </h2>
-        </template>
         <div class="py-12">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
@@ -50,7 +45,6 @@
                 </div>
             </div>
         </div>
-        
     </AuthenticatedLayout>
 </template>
 
@@ -58,8 +52,25 @@
 
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import { Inertia } from '@inertiajs/inertia';
 
     
+    const form = useForm({
+        nome:'',
+        rg:'',
+        email: '',
+        telefone: '',
+        endereco: '',
+        imagem: '',
+    });
+
+    const submit = () => {
+        form.post(route('v1/clientes.store'));
+    };
+    
+    
+
+    /**
     const props = defineProps({
         clientes: {
             type: Object,
@@ -73,15 +84,13 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
         email: '',
         telefone: '',
         endereco: '',
-        imagem: null,
+        imagem: '',
     });
 
     const submit = () => {
         form.post(route("clientes.store"));
     };
-    
-
-    /**
+     * 
      * d
     methods: {
     },

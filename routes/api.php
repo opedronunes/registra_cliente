@@ -30,10 +30,9 @@ Route::get('/editar/{id}', [ClienteController::class, 'editCliente']);
 Route::put('/atualizar/{id}', [ClienteController::class, 'updateCliente']);
 Route::delete('/clientes/{id}', [ClienteController::class, 'deleteCliente']);
 */
-/*
+
 Route::group([
     'prefix' => 'v1'
 ], function() {
     Route::apiResource('clientes', ApiClienteController::class);
 });
-*/
